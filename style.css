@@ -62,6 +62,10 @@ body::before {
 .nav a {
     color: white;
     text-decoration: none; /* 下線を消す */
+    border: 2px solid white;  /* 白色の枠線を追加 */
+    padding: 5px 10px;  /* 内側の余白を設定 */
+    border-radius: 5px;  /* 角を少し丸く */
+    transition: background 0.3s, color 0.3s;
 }
 
 
