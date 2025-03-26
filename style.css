@@ -51,6 +51,8 @@ body::before {
 
 /* ナビゲーション */
 .nav {
+    color: white;
+    text-decoration: none; /* 下線を消す */
     display: flex;
     flex-wrap: wrap;  /* 画面幅が狭いときに折り返し */
     justify-content: flex-end;  /* 右寄せ */
