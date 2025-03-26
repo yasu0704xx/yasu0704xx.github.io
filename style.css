@@ -52,18 +52,23 @@ body::before {
 /* ナビゲーション */
 .nav {
     display: flex;
+    flex-wrap: wrap;  /* 画面幅が狭いときに折り返し */
+    justify-content: flex-end;  /* 右寄せ */
+    gap: 15px;  /* リンク間の余白 */
+    padding-right: 20px;  /* 右側の余白を調整 */
 }
 
-.nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 16px;
-    transition: opacity 0.3s;
-}
+/* 画面が狭い場合の対応 */
+@media (max-width: 768px) {
+    .nav {
+        justify-content: center;  /* 中央寄せに変更 */
+        flex-direction: column;  /* 縦配置に変更 */
+        align-items: center;  /* 中央揃え */
+    }
 
-.nav a:hover {
-    opacity: 0.7;
+    .nav a {
+        margin: 5px 0;  /* 各リンクの間隔を確保 */
+    }
 }
 
 /* メインコンテンツ */
