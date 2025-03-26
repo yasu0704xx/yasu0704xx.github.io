@@ -22,6 +22,9 @@
             justify-content: space-between;
             padding: 15px 20px;
             z-index: 1000;
+            background-image: url('top.jpeg');
+            background-size: cover;
+            background-position: center;
         }
         .logo {
             font-size: 22px;
