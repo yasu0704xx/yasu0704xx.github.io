@@ -14,17 +14,17 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: #8a2be2;
-            color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 200px; /* 高さを明示的に指定 */
+            background-image: url('top.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            background-image: url('top.jpeg');
-            background-size: cover;
-            background-position: center;
         }
         .logo {
             font-size: 22px;
