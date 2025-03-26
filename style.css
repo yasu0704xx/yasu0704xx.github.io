@@ -77,11 +77,12 @@ body::before {
 }
 
 .profile-photo {
-    width: 100px; 
-    height: 100px; 
+    width: 120px; 
+    height: 120px; 
     display: block;
-    margin: 10px auto;
     object-fit: cover; /* 画像のアスペクト比を保持 */
+    float: left; /* 左に寄せる */
+    margin-right: 10px; /* テキストとの間に余白 */
 }
 /* 見出し */
 h2 {
