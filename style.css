@@ -1,104 +1,273 @@
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background: url('ghost.JPG') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
+/* style.css — unify look with policy-learning-kyoto2025
+   Author: YASU site refresh
+   Notes:
+   - 既存HTMLのclassに依存せず、要素セレクタ中心で見た目を揃えます
+   - 固定ヘッダー想定のアンカーずれ対策(scroll-margin-top)
+   - ダーク基調 / アクセント #7aa2ff
+*/
+
+/* ---------- Design Tokens ---------- */
+:root{
+  --bg: #0b1020;
+  --panel: #121833;
+  --ink: #e8ecf4;
+  --ink-muted: #a7b0c0;
+  --accent: #7aa2ff;
+  --accent-2: #9cf0ff;
+  --ring: rgba(122,162,255,.45);
+  --shadow: 0 10px 30px rgba(0,0,0,.28);
+  --radius: 16px;
+  --maxw: 1024px;
+
+  --gap-1: .5rem;
+  --gap-2: 1rem;
+  --gap-3: 1.5rem;
+  --gap-4: 2rem;
+  --gap-5: 3rem;
 }
 
-/* 背景画像に透かし効果を適用 */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url('ghost.JPG') no-repeat center center fixed;
-    background-size: cover;
-    opacity: 0.3; /* 透明度調整 */
-    z-index: -1;
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+html, body{ margin:0; padding:0; }
+body{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",system-ui,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+  line-height: 1.6;
+  color: var(--ink);
+  background: radial-gradient(1200px 800px at 20% -10%, #182047 0%, transparent 60%) , var(--bg);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ヘッダー */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #8a2be2;
-    color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    z-index: 1000;
-    font-family: Montserrat, sans-serif;
+/* ---------- Layout primitives ---------- */
+.container, main{
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+section{
+  padding: var(--gap-5) 0;
+  scroll-margin-top: 84px; /* 固定ヘッダーがある場合のアンカーずれ対策 */
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+section:first-of-type{ border-top: none; }
+
+/* ---------- Header / Nav ---------- */
+header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--panel) 80%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  box-shadow: var(--shadow);
+}
+header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height: 64px;
+}
+.site-title{
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  font-size: clamp(18px, 2.2vw, 22px);
+}
+nav ul{
+  display:flex;
+  gap: clamp(12px, 2.2vw, 24px);
+  list-style:none;
+  margin:0; padding:0;
+}
+nav a{
+  color: var(--ink);
+  text-decoration: none;
+  opacity:.9;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: .2s ease;
+}
+nav a:hover, nav a:focus-visible{
+  opacity:1;
+  background: rgba(122,162,255,.08);
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px var(--ring);
 }
 
-/* ロゴ */
-.logo {
-    font-size: 22px;
-    font-weight: bold;
+/* ---------- Typography ---------- */
+h1,h2,h3,h4{
+  line-height: 1.25;
+  margin: 0 0 .6em;
+}
+h1{ font-size: clamp(30px, 4.8vw, 44px); }
+h2{ font-size: clamp(22px, 3.4vw, 30px); }
+h3{ font-size: clamp(18px, 2.8vw, 22px); }
+p{ margin: 0 0 1em; color: var(--ink); }
+.muted{ color: var(--ink-muted); }
+
+a{
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:hover{ text-decoration-thickness: 2px; }
+
+hr{
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin: var(--gap-4) 0;
 }
 
-.logo span {
-    font-size: 14px;
-    display: block;
-    opacity: 0.8;
+/* ---------- Panels / Cards ---------- */
+.panel, .card{
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.5vw, 24px);
+}
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-3);
+}
+@media (min-width: 820px){
+  .grid.two{ grid-template-columns: 1fr 1fr; }
+  .grid.three{ grid-template-columns: repeat(3, 1fr); }
 }
 
-/* ナビゲーション */
-.nav {
-    display: flex;
-    flex-wrap: wrap;  /* 画面幅が狭いときに折り返し */
-    justify-content: flex-end;  /* 右寄せ */
-    gap: 15px;  /* リンク間の余白 */
-    padding-right: 20px;  /* 右側の余白を調整 */
-    margin-right: 10px; 
+/* ---------- Lists / Definition ---------- */
+ul,ol{ padding-left: 1.2em; }
+li{ margin: .25em 0; }
+dl{ display:grid; grid-template-columns: auto 1fr; gap: .5rem 1rem; }
+dt{ color: var(--ink-muted); }
+dd{ margin:0; }
+
+/* ---------- Images ---------- */
+img, video{
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
 }
 
-.nav a {
-    color: white;
-    text-decoration: none; /* 下線を消す */
-    border: 2px solid white;  /* 白色の枠線を追加 */
-    padding: 5px 10px;  /* 内側の余白を設定 */
-    border-radius: 5px;  /* 角を少し丸く */
-    transition: background 0.3s, color 0.3s;
+/* ---------- Buttons / Chips ---------- */
+.button, button, input[type=submit]{
+  cursor: pointer;
+  display:inline-flex;
+  align-items:center;
+  gap: .5em;
+  padding: .65em 1em;
+  border-radius: 999px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 74%, #fff 0%) , color-mix(in oklab, var(--accent) 90%, #000 0%));
+  color: #0b1020;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(122,162,255,.35);
+  transition: transform .08s ease, box-shadow .15s ease, filter .15s ease;
+  text-decoration: none;
+}
+.button:hover, button:hover, input[type=submit]:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(122,162,255,.42);
+  filter: saturate(1.05);
+}
+.button.ghost{
+  background: transparent;
+  color: var(--accent-2);
+  border: 1px solid rgba(156,240,255,.35);
+  box-shadow: none;
 }
 
-
-/* メインコンテンツ */
-.container {
-    max-width: 800px;
-    margin: 100px auto 20px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.935);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* ---------- Tables ---------- */
+table{
+  width:100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow:hidden;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--panel) 96%, transparent);
+  border: 1px solid rgba(255,255,255,.08);
+}
+th, td{
+  padding: .75rem .9rem;
+  text-align:left;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+thead th{
+  font-weight: 700;
+  background: rgba(255,255,255,.03);
+}
+tbody tr:hover{
+  background: rgba(122,162,255,.06);
 }
 
-.profile-photo {
-    width: 120px; 
-    height: 120px; 
-    display: block;
-    object-fit: cover; /* 画像のアスペクト比を保持 */
-    float: left; /* 左に寄せる */
-    margin-right: 10px; /* テキストとの間に余白 */
+/* ---------- Code ---------- */
+code, pre, kbd, samp{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace, "Noto Sans Mono CJK JP";
 }
-/* 見出し */
-h2 {
-    color: #8a2be2;
-    border-bottom: 2px solid #8a2be2;
-    padding-bottom: 5px;
+code{
+  background: rgba(255,255,255,.08);
+  padding: .15em .35em;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+pre{
+  background: color-mix(in oklab, var(--panel) 95%, transparent);
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  overflow:auto;
+  border: 1px solid rgba(255,255,255,.08);
 }
 
-/* フッター */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #8a2be2;
-    color: white;
-    margin
+/* ---------- Forms ---------- */
+input, textarea, select{
+  width: 100%;
+  color: var(--ink);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: .7rem .9rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+input:focus, textarea:focus, select:focus{
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* ---------- Footer ---------- */
+footer{
+  padding: var(--gap-4) 0 var(--gap-5);
+  color: var(--ink-muted);
+}
+
+/* ---------- Anchors inside headings (for TOC links) ---------- */
+h2[id], h3[id], h4[id]{ scroll-margin-top: 88px; }
+
+/* ---------- Utility ---------- */
+.center{ text-align:center; }
+.right{ text-align:right; }
+.maxw{ max-width: var(--maxw); margin-inline:auto; }
+.pad{ padding: var(--gap-3); }
+.mt-0{ margin-top:0; }
+.mt-1{ margin-top:.5rem; }
+.mt-2{ margin-top:1rem; }
+.mt-3{ margin-top:1.5rem; }
+.mt-4{ margin-top:2rem; }
+
+/* ---------- Light scheme fallback (必要なら) ---------- */
+@media (prefers-color-scheme: light){
+  :root{
+    --bg: #f7f9ff;
+    --panel: #ffffff;
+    --ink: #0b1020;
+    --ink-muted: #52607a;
+    --ring: rgba(122,162,255,.35);
+  }
+  body{ background: linear-gradient(180deg,#f1f4ff 0%,#f7f9ff 30%,#eef2ff 100%); }
+  section{ border-top-color: rgba(0,0,0,.06); }
+  table{ border-color: rgba(0,0,0,.08); }
+  th,td{ border-bottom-color: rgba(0,0,0,.06); }
+  pre{ border-color: rgba(0,0,0,.08); }
+}
