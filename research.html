@@ -20,14 +20,15 @@
     </header>
 
       <div class="container">
-          <button class="btn" onclick="jump('work-in-progress')">Work in Progress</button>
-          <button class="btn" onclick="jump('Publications')">Publications</button>
-          <button class="btn" onclick="jump('Awards')">Awards</button>
+        <nav class="tabs">
+          <a class="btn" href="#work-in-progress">Work in Progress</a>
+          <a class="btn" href="#publications">Publications</a>
+          <a class="btn" href="#awards">Awards</a>
+        </nav>
       </div>
 
   <section id="work-in-progress">
-      <div class="container">
-            <h2>Work in Progress</h2>
+          <h2 id="work-in-progress">Work in Progress</h2>
             <ul>
                 <li><p style="color: purple;">Selective Inference in Regression Discontinuity Designs: Exploiting High-Dimensional Covariates</p></li>
                 <li><p style="color: purple;">Principal Component Regression in Econometrics</p></li> 
@@ -36,19 +37,14 @@
                     </ul>
             </ul>
        </div>
-  </section>
 
-  <section id="Publications">
        <div class="container">
-            <h2>Publications</h2>
+            <h2 id="publications">Publications</h2>
        </div>
-  </section>
 
-  <section id="Awards">
        <div class="container">
-            <h2>Awards</h2>
+            <h2 id="awards">Awards</h2>
        </div>
-  </section>
 
     <footer>
         <p>&copy; 2025 Yasuyuki Matsumura. All rights reserved.</p>
